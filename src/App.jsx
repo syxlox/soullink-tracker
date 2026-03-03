@@ -60,14 +60,19 @@ const M_CFG = {
 const ROUTES = [
   { id: "starter", name: "Starter", region: "johto", phase: "Falk", methods: ["gift"] },
   { id: "r29", name: "Route 29", region: "johto", phase: "Falk", methods: ["grass", "headbutt"] },
+  { id: "cherry", name: "Cherrygrove City", region: "johto", phase: "Falk", methods: ["surf", "fish"] },
   { id: "r30", name: "Route 30", region: "johto", phase: "Falk", methods: ["grass", "headbutt", "surf", "fish"] },
   { id: "r31", name: "Route 31", region: "johto", phase: "Falk", methods: ["grass", "headbutt"] },
   { id: "dark1", name: "Dark Cave (Eingang)", region: "johto", phase: "Falk", methods: ["cave", "surf", "fish"] },
   { id: "sprout", name: "Sprout Tower", region: "johto", phase: "Falk", methods: ["cave"] },
+  { id: "violet", name: "Violet City", region: "johto", phase: "Falk", methods: ["surf", "fish"] },
   { id: "togepi", name: "Violet City (Togepi-Ei)", region: "johto", phase: "Falk", methods: ["gift"] },
   { id: "r32", name: "Route 32", region: "johto", phase: "Bianka", methods: ["grass", "headbutt", "surf", "fish"] },
+  { id: "alph", name: "Ruinen von Alph (Innen)", region: "johto", phase: "Bianka", methods: ["cave"] },
+  { id: "alph_grass", name: "Ruinen von Alph (Außen)", region: "johto", phase: "Bianka", methods: ["grass", "surf", "fish"] },
   { id: "union1", name: "Union Cave 1F", region: "johto", phase: "Bianka", methods: ["cave", "surf", "fish"] },
   { id: "union2", name: "Union Cave B1F", region: "johto", phase: "Bianka", methods: ["cave", "surf", "fish"] },
+  { id: "union3", name: "Union Cave B2F", region: "johto", phase: "Bianka", methods: ["cave", "surf", "fish", "static"] },
   { id: "r33", name: "Route 33", region: "johto", phase: "Bianka", methods: ["grass", "headbutt"] },
   { id: "slow1", name: "Slowpoke Well B1F", region: "johto", phase: "Bianka", methods: ["cave", "surf", "fish"] },
   { id: "slow2", name: "Slowpoke Well B2F", region: "johto", phase: "Bianka", methods: ["cave", "surf", "fish"] },
@@ -75,9 +80,9 @@ const ROUTES = [
   { id: "ilex", name: "Ilex Wald", region: "johto", phase: "Bianka", methods: ["grass", "headbutt", "surf"] },
   { id: "r34", name: "Route 34", region: "johto", phase: "Whitney", methods: ["grass", "headbutt", "surf", "fish"] },
   { id: "eevee", name: "Goldenrod (Evoli)", region: "johto", phase: "Whitney", methods: ["gift"] },
-  { id: "r35", name: "Route 35", region: "johto", phase: "Whitney", methods: ["grass", "headbutt", "surf"] },
+  { id: "r35", name: "Route 35", region: "johto", phase: "Whitney", methods: ["grass", "headbutt", "surf", "gift"] },
   { id: "npark", name: "Nationalpark", region: "johto", phase: "Whitney", methods: ["grass", "bug"] },
-  { id: "r36", name: "Route 36", region: "johto", phase: "Jens", methods: ["grass", "headbutt"] },
+  { id: "r36", name: "Route 36", region: "johto", phase: "Jens", methods: ["grass", "headbutt", "static"] },
   { id: "r37", name: "Route 37", region: "johto", phase: "Jens", methods: ["grass", "headbutt"] },
   { id: "burned", name: "Turmruine", region: "johto", phase: "Jens", methods: ["cave"] },
   { id: "r38", name: "Route 38", region: "johto", phase: "Chuck", methods: ["grass", "headbutt"] },
@@ -85,9 +90,12 @@ const ROUTES = [
   { id: "olivine", name: "Olivine City", region: "johto", phase: "Jasmin", methods: ["surf", "fish"] },
   { id: "r40", name: "Route 40", region: "johto", phase: "Chuck", methods: ["surf", "fish"] },
   { id: "r41", name: "Route 41", region: "johto", phase: "Chuck", methods: ["surf", "fish"] },
-  { id: "cianwood", name: "Cianwood City", region: "johto", phase: "Chuck", methods: ["surf", "fish"] },
+  { id: "cianwood", name: "Cianwood City", region: "johto", phase: "Chuck", methods: ["surf", "fish", "gift"] },
+  { id: "cliff_cave", name: "Cliff Cave", region: "johto", phase: "Chuck", methods: ["cave", "surf", "fish"] },
+  { id: "cliff_gate", name: "Cliff Edge Gate", region: "johto", phase: "Chuck", methods: ["cave"] },
   { id: "r42", name: "Route 42", region: "johto", phase: "Sandra", methods: ["grass", "surf", "fish"] },
   { id: "mortar1", name: "Mt. Mortar 1F", region: "johto", phase: "Sandra", methods: ["cave", "surf", "fish"] },
+  { id: "mortar2", name: "Mt. Mortar B1F", region: "johto", phase: "Sandra", methods: ["cave", "surf", "fish"] },
   { id: "r43", name: "Route 43", region: "johto", phase: "Sandra", methods: ["grass", "surf", "fish"] },
   { id: "lake", name: "See des Zorns", region: "johto", phase: "Sandra", methods: ["surf", "fish", "static"] },
   { id: "ice1", name: "Eispfad 1F", region: "johto", phase: "Clair", methods: ["cave"] },
@@ -103,11 +111,13 @@ const ROUTES = [
   { id: "safari1", name: "Safari Zone (Wiese)", region: "johto", phase: "Clair", methods: ["grass"] },
   { id: "safari2", name: "Safari Zone (Wald)", region: "johto", phase: "Clair", methods: ["grass"] },
   { id: "safari3", name: "Safari Zone (Sumpf)", region: "johto", phase: "Clair", methods: ["grass", "surf"] },
+  { id: "bellchime", name: "Bellchime Trail", region: "johto", phase: "Clair", methods: ["grass"] },
   { id: "whirl", name: "Strudelinseln", region: "johto", phase: "Clair", methods: ["cave", "surf", "fish"] },
   { id: "lugia", name: "Strudelinseln (Lugia)", region: "johto", phase: "Clair", methods: ["static"] },
   { id: "bell", name: "Glockenturm", region: "johto", phase: "Clair", methods: ["cave"] },
   { id: "hooh", name: "Glockenturm (Ho-Oh)", region: "johto", phase: "Clair", methods: ["static"] },
   { id: "vroad", name: "Siegesstraße", region: "johto", phase: "E4", methods: ["cave", "surf", "fish"] },
+  { id: "newbark", name: "New Bark Town", region: "johto", phase: "E4", methods: ["surf", "fish"] },
   { id: "r26", name: "Route 26", region: "kanto", phase: "Kanto", methods: ["grass", "surf", "fish"] },
   { id: "r27", name: "Route 27", region: "kanto", phase: "Kanto", methods: ["grass", "surf", "fish"] },
   { id: "tohjo", name: "Tohjo-Fälle", region: "kanto", phase: "Kanto", methods: ["cave", "surf", "fish"] },
@@ -124,8 +134,9 @@ const ROUTES = [
   { id: "r9", name: "Route 9", region: "kanto", phase: "Kanto", methods: ["grass"] },
   { id: "r10", name: "Route 10", region: "kanto", phase: "Kanto", methods: ["grass"] },
   { id: "rktunnel", name: "Felstunnel", region: "kanto", phase: "Kanto", methods: ["cave"] },
-  { id: "power", name: "Kraftwerk", region: "kanto", phase: "Kanto", methods: ["surf", "fish"] },
+  { id: "power", name: "Kraftwerk", region: "kanto", phase: "Kanto", methods: ["surf", "fish", "static"] },
   { id: "r11", name: "Route 11", region: "kanto", phase: "Kanto", methods: ["grass"] },
+  { id: "snorlax", name: "Route 11 (Relaxo)", region: "kanto", phase: "Kanto", methods: ["static"] },
   { id: "diglett", name: "Digda-Höhle", region: "kanto", phase: "Kanto", methods: ["cave"] },
   { id: "r12", name: "Route 12", region: "kanto", phase: "Kanto", methods: ["grass", "surf", "fish"] },
   { id: "r13", name: "Route 13", region: "kanto", phase: "Kanto", methods: ["grass", "surf", "fish"] },
@@ -140,8 +151,11 @@ const ROUTES = [
   { id: "r21", name: "Route 21", region: "kanto", phase: "Kanto", methods: ["surf", "fish"] },
   { id: "r22", name: "Route 22", region: "kanto", phase: "Kanto", methods: ["grass"] },
   { id: "r24", name: "Route 24", region: "kanto", phase: "Kanto", methods: ["grass", "surf", "fish"] },
-  { id: "r25", name: "Route 25", region: "kanto", phase: "Kanto", methods: ["grass", "surf", "fish"] },
+  { id: "r25", name: "Route 25", region: "kanto", phase: "Kanto", methods: ["grass", "surf", "fish", "static"] },
   { id: "cerulean", name: "Azuria-Höhle", region: "kanto", phase: "Kanto", methods: ["cave", "surf", "fish"] },
+  { id: "mewtwo", name: "Azuria-Höhle (Mewtu)", region: "kanto", phase: "Kanto", methods: ["static"] },
+  { id: "pallet", name: "Pallet Town (Kanto-Starter)", region: "kanto", phase: "Rot", methods: ["gift"] },
+  { id: "r28", name: "Route 28", region: "kanto", phase: "Rot", methods: ["grass"] },
   { id: "mtsilver1", name: "Silberberg Außen", region: "kanto", phase: "Rot", methods: ["grass", "surf"] },
   { id: "mtsilver2", name: "Silberberg Innen", region: "kanto", phase: "Rot", methods: ["cave", "surf", "fish"] },
 ];
@@ -692,6 +706,11 @@ export default function SoulLinkTracker() {
   };
 
   const teamEnc = allEnc.filter(e => e.status === STATUS.TEAM);
+  const boxEnc = allEnc.filter(e => e.status === STATUS.BOX).sort((a, b) => {
+    const tsA = typeof a.ts === 'number' ? a.ts : 0;
+    const tsB = typeof b.ts === 'number' ? b.ts : 0;
+    return tsA - tsB;
+  });
   const deadEnc = allEnc.filter(e => e.status === STATUS.DEAD);
   const missedEnc = allEnc.filter(e => e.status === STATUS.MISSED);
 
@@ -747,6 +766,7 @@ export default function SoulLinkTracker() {
   const TABS = [
     { k: "routes", l: "📍 Routen" },
     { k: "team", l: "⚔️ Team" },
+    { k: "box", l: "📦 Box" },
     { k: "graveyard", l: "🪦 Friedhof" },
     { k: "badges", l: "🏅 Badges" },
     { k: "dex", l: "📖 Pokédex" },
@@ -819,6 +839,11 @@ export default function SoulLinkTracker() {
                 ⏪ <span style={{ fontSize: 10 }}>Undo</span>
               </button>
             )}
+            {/* Regelwerk Link */}
+            <a href="/regelwerk.html" target="_blank" rel="noopener noreferrer"
+              style={{ ...BTN_GHOST, display: "flex", alignItems: "center", gap: 4, padding: "6px 10px", textDecoration: "none", color: "#4b5468" }}>
+              📜 <span style={{ fontSize: 10 }}>Regeln</span>
+            </a>
           </div>
         </div>
       </div>
@@ -1064,12 +1089,80 @@ export default function SoulLinkTracker() {
                           </div>
                         </div>
                       </div>
+                      <div style={{ marginTop: 8, display: "flex", justifyContent: "flex-end" }}>
+                        <button onClick={() => save({ encounters: { [key]: { ...e, status: STATUS.BOX } } })}
+                          style={{ ...BTN_GHOST, display: "flex", alignItems: "center", gap: 4, padding: "4px 10px", color: "#f59e0b", borderColor: "rgba(245,158,11,.2)" }}>
+                          📦 In die Box
+                        </button>
+                      </div>
                     </div>
                   );
                 })}
               </div>
               <CoverageAnalysis teamEncounters={teamEnc} />
             </>
+          )}
+        </div>
+      )}
+
+      {/* ════════════════════════════════════════════════════════ */}
+      {/* BOX TAB */}
+      {/* ════════════════════════════════════════════════════════ */}
+      {tab === "box" && (
+        <div style={{ maxWidth: 720, margin: "0 auto", padding: "12px 16px 40px" }}>
+          {boxEnc.length === 0 ? (
+            <div style={{ textAlign: "center", padding: 40, color: "#3b4560" }}>
+              <div style={{ fontSize: 32, marginBottom: 8 }}>📦</div>
+              <div style={{ fontSize: 13 }}>Die Box ist leer</div>
+            </div>
+          ) : (
+            <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+              {boxEnc.map((e, i) => {
+                const key = Object.entries(enc).find(([, v]) => v === e)?.[0] || i;
+                const routeId = key.split("__")[0];
+                const route = ROUTE_MAP[routeId];
+                return (
+                  <div key={key} style={{ background: "#0b1018", border: "1px solid rgba(245,158,11,.15)", borderRadius: 12, padding: 14 }}>
+                    <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
+                      {/* P1 */}
+                      <div style={{ flex: 1, display: "flex", alignItems: "center", gap: 8 }}>
+                        <Sprite id={e.p1Id} size={52} />
+                        <div>
+                          <div style={{ fontSize: 9, fontWeight: 800, letterSpacing: 1, color: "#ef4444" }}>{data.p1N}</div>
+                          <div style={{ fontSize: 15, fontWeight: 700 }}>
+                            {e.p1Nick || e.p1}
+                            {e.p1Level && <span style={{ fontSize: 11, color: "#4b5468", marginLeft: 4 }}>Lv.{e.p1Level}</span>}
+                          </div>
+                          <div style={{ display: "flex", gap: 2, marginTop: 2 }}>{(e.p1Types || []).map(t => <TypeBadge key={t} type={t} />)}</div>
+                        </div>
+                      </div>
+                      <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 2 }}>
+                        <Pokeball size={20} color="#f59e0b" />
+                        <div style={{ fontSize: 8, color: "#3b4560", fontWeight: 600 }}>{route?.name || "?"}</div>
+                      </div>
+                      {/* P2 */}
+                      <div style={{ flex: 1, display: "flex", alignItems: "center", gap: 8, flexDirection: "row-reverse" }}>
+                        <Sprite id={e.p2Id} size={52} />
+                        <div style={{ textAlign: "right" }}>
+                          <div style={{ fontSize: 9, fontWeight: 800, letterSpacing: 1, color: "#3b82f6" }}>{data.p2N}</div>
+                          <div style={{ fontSize: 15, fontWeight: 700 }}>
+                            {e.p2Nick || e.p2}
+                            {e.p2Level && <span style={{ fontSize: 11, color: "#4b5468", marginLeft: 4 }}>Lv.{e.p2Level}</span>}
+                          </div>
+                          <div style={{ display: "flex", gap: 2, marginTop: 2, justifyContent: "flex-end" }}>{(e.p2Types || []).map(t => <TypeBadge key={t} type={t} />)}</div>
+                        </div>
+                      </div>
+                    </div>
+                    <div style={{ marginTop: 8, display: "flex", justifyContent: "flex-end" }}>
+                      <button onClick={() => save({ encounters: { [key]: { ...e, status: STATUS.TEAM } } })}
+                        style={{ ...BTN_GHOST, display: "flex", alignItems: "center", gap: 4, padding: "4px 10px", color: "#22c55e", borderColor: "rgba(22,163,74,.2)" }}>
+                        ⚔️ Ins Team
+                      </button>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
           )}
         </div>
       )}
@@ -1085,32 +1178,53 @@ export default function SoulLinkTracker() {
               <div style={{ fontSize: 13 }}>Noch keine Verluste – weiter so!</div>
             </div>
           ) : (
-            <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
+            <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
               {deadEnc.map((e, i) => {
                 const key = Object.entries(enc).find(([, v]) => v === e)?.[0] || i;
                 const routeId = key.split("__")[0];
                 const route = ROUTE_MAP[routeId];
                 return (
-                  <div key={key} style={{ background: "#0b1018", border: "1px solid rgba(239,68,68,.12)", borderRadius: 12, padding: 12, opacity: .85 }}>
-                    <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-                      <Sprite id={e.p1Id} size={40} dead />
-                      <div style={{ flex: 1, minWidth: 0 }}>
-                        <div style={{ fontSize: 13, fontWeight: 700, color: "#ef4444" }}>
-                          {e.p1Nick} & {e.p2Nick}
-                        </div>
-                        <div style={{ fontSize: 10, color: "#4b5468" }}>
-                          📍 {route?.name || routeId}
-                          {e.deathInfo?.date && <span> · {e.deathInfo.date}</span>}
-                        </div>
-                        {e.deathInfo?.cause && (
-                          <div style={{ fontSize: 10, color: "#8b95a8", marginTop: 2 }}>
-                            💀 {e.deathInfo.cause}
-                            {e.deathInfo.killer && <span> — {e.deathInfo.killer}</span>}
+                  <div key={key} style={{ background: "#0b1018", border: "1px solid rgba(239,68,68,.12)", borderRadius: 12, padding: 14, opacity: .85 }}>
+                    <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
+                      {/* P1 */}
+                      <div style={{ flex: 1, display: "flex", alignItems: "center", gap: 8 }}>
+                        <Sprite id={e.p1Id} size={52} dead />
+                        <div>
+                          <div style={{ fontSize: 9, fontWeight: 800, letterSpacing: 1, color: "#ef4444", opacity: .6 }}>{data.p1N}</div>
+                          <div style={{ fontSize: 15, fontWeight: 700, opacity: .5 }}>
+                            {e.p1Nick || e.p1}
+                            {e.p1Level && <span style={{ fontSize: 11, color: "#4b5468", marginLeft: 4 }}>Lv.{e.p1Level}</span>}
                           </div>
-                        )}
+                          <div style={{ display: "flex", gap: 2, marginTop: 2, opacity: .5 }}>{(e.p1Types || []).map(t => <TypeBadge key={t} type={t} />)}</div>
+                        </div>
                       </div>
-                      <Sprite id={e.p2Id} size={40} dead />
+                      <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 2 }}>
+                        <div style={{ fontSize: 16 }}>💀</div>
+                        <div style={{ fontSize: 8, color: "#3b4560", fontWeight: 600 }}>{route?.name || "?"}</div>
+                      </div>
+                      {/* P2 */}
+                      <div style={{ flex: 1, display: "flex", alignItems: "center", gap: 8, flexDirection: "row-reverse" }}>
+                        <Sprite id={e.p2Id} size={52} dead />
+                        <div style={{ textAlign: "right" }}>
+                          <div style={{ fontSize: 9, fontWeight: 800, letterSpacing: 1, color: "#3b82f6", opacity: .6 }}>{data.p2N}</div>
+                          <div style={{ fontSize: 15, fontWeight: 700, opacity: .5 }}>
+                            {e.p2Nick || e.p2}
+                            {e.p2Level && <span style={{ fontSize: 11, color: "#4b5468", marginLeft: 4 }}>Lv.{e.p2Level}</span>}
+                          </div>
+                          <div style={{ display: "flex", gap: 2, marginTop: 2, justifyContent: "flex-end", opacity: .5 }}>{(e.p2Types || []).map(t => <TypeBadge key={t} type={t} />)}</div>
+                        </div>
+                      </div>
                     </div>
+                    {(e.deathInfo?.cause || e.deathInfo?.date) && (
+                      <div style={{ marginTop: 8, padding: "6px 10px", background: "rgba(239,68,68,.06)", borderRadius: 8, display: "flex", alignItems: "center", gap: 6 }}>
+                        <span style={{ fontSize: 12 }}>🪦</span>
+                        <div style={{ flex: 1, fontSize: 11, color: "#ef4444" }}>
+                          {e.deathInfo.cause && <span>{e.deathInfo.cause}</span>}
+                          {e.deathInfo.killer && <span> — {e.deathInfo.killer}</span>}
+                        </div>
+                        {e.deathInfo.date && <span style={{ fontSize: 10, color: "#4b5468" }}>{e.deathInfo.date}</span>}
+                      </div>
+                    )}
                   </div>
                 );
               })}

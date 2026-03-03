@@ -4,3 +4,4 @@ data.json
 history.json
 data/
 *.log
+docker.push

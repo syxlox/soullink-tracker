@@ -2,7 +2,9 @@ version: '3.8'
 
 services:
   soullink:
-    build: .
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
     container_name: soullink-tracker
     ports:
       - "3000:3000"

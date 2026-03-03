@@ -1,0 +1,1009 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Soul Link – Regelwerk</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes shimmer {
+    0% { background-position: -200% center; }
+    100% { background-position: 200% center; }
+  }
+  @keyframes pulseGlow {
+    0%, 100% { opacity: 0.4; }
+    50% { opacity: 0.7; }
+  }
+  @keyframes borderGlow {
+    0%, 100% { border-color: rgba(220, 38, 38, 0.2); }
+    50% { border-color: rgba(220, 38, 38, 0.5); }
+  }
+
+  :root {
+    --bg: #06080f;
+    --bg-elevated: #0c1019;
+    --bg-card: #10151f;
+    --bg-card-alt: #131924;
+    --bg-hover: #181f2e;
+    --border: rgba(255,255,255,0.06);
+    --border-strong: rgba(255,255,255,0.1);
+    --red: #dc2626;
+    --red-soft: #ef4444;
+    --red-bg: rgba(220, 38, 38, 0.08);
+    --red-border: rgba(220, 38, 38, 0.2);
+    --blue: #2563eb;
+    --blue-soft: #3b82f6;
+    --blue-bg: rgba(37, 99, 235, 0.08);
+    --blue-border: rgba(37, 99, 235, 0.2);
+    --gold: #d97706;
+    --gold-soft: #f59e0b;
+    --gold-bg: rgba(217, 119, 6, 0.08);
+    --gold-border: rgba(217, 119, 6, 0.2);
+    --green: #16a34a;
+    --green-soft: #22c55e;
+    --green-bg: rgba(22, 163, 74, 0.08);
+    --green-border: rgba(22, 163, 74, 0.2);
+    --purple: #7c3aed;
+    --purple-soft: #a78bfa;
+    --text: #e8ecf4;
+    --text-dim: #8b95a8;
+    --text-muted: #4b5468;
+    --text-ghost: #2d3548;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; scroll-padding-top: 60px; }
+
+  body {
+    font-family: 'DM Sans', -apple-system, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    font-weight: 400;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ══════════════════ HERO ══════════════════ */
+  .hero {
+    position: relative;
+    padding: 80px 32px 60px;
+    text-align: center;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -40%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 800px;
+    height: 600px;
+    background: radial-gradient(ellipse, rgba(220,38,38,0.07) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(220,38,38,0.3), transparent);
+  }
+
+  .hero-label {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--red);
+    margin-bottom: 20px;
+    animation: fadeUp 0.6s ease both;
+  }
+  .hero h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(56px, 10vw, 96px);
+    letter-spacing: 4px;
+    line-height: 0.95;
+    margin-bottom: 16px;
+    animation: fadeUp 0.6s ease 0.1s both;
+    background: linear-gradient(135deg, #fff 0%, #dc2626 50%, #2563eb 100%);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: fadeUp 0.6s ease 0.1s both, shimmer 4s linear infinite;
+  }
+  .hero-sub {
+    font-size: 14px;
+    color: var(--text-dim);
+    font-weight: 400;
+    letter-spacing: 0.5px;
+    animation: fadeUp 0.6s ease 0.2s both;
+  }
+  .hero-sub span {
+    display: inline-block;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: var(--text-muted);
+    margin: 0 10px;
+    vertical-align: middle;
+  }
+
+  /* ══════════════════ NAV ══════════════════ */
+  .nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(6, 8, 15, 0.85);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border-bottom: 1px solid var(--border);
+    padding: 0 20px;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .nav::-webkit-scrollbar { display: none; }
+  .nav-inner {
+    max-width: 860px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    gap: 4px;
+  }
+  .nav a {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 16px 14px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    text-decoration: none;
+    white-space: nowrap;
+    border-bottom: 2px solid transparent;
+    transition: all 0.25s ease;
+  }
+  .nav a:hover, .nav a:focus {
+    color: var(--text);
+    border-bottom-color: var(--red);
+  }
+  .nav a .nav-icon { font-size: 13px; }
+
+  /* ══════════════════ CONTAINER ══════════════════ */
+  .container {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 0 24px 100px;
+  }
+
+  /* ══════════════════ SECTIONS ══════════════════ */
+  .section {
+    padding-top: 56px;
+    animation: fadeUp 0.5s ease both;
+  }
+  .section-head {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 28px;
+  }
+  .section-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    flex-shrink: 0;
+  }
+  .section-icon.red { background: var(--red-bg); border: 1px solid var(--red-border); }
+  .section-icon.blue { background: var(--blue-bg); border: 1px solid var(--blue-border); }
+  .section-icon.gold { background: var(--gold-bg); border: 1px solid var(--gold-border); }
+  .section-icon.green { background: var(--green-bg); border: 1px solid var(--green-border); }
+  .section-icon.purple { background: rgba(124,58,237,0.08); border: 1px solid rgba(124,58,237,0.2); }
+
+  .section-meta { flex: 1; }
+  .section-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 28px;
+    letter-spacing: 2px;
+    line-height: 1;
+  }
+  .section-subtitle {
+    font-size: 12px;
+    color: var(--text-muted);
+    font-weight: 500;
+    margin-top: 2px;
+  }
+
+  /* ══════════════════ RULE CARDS ══════════════════ */
+  .rule-card {
+    position: relative;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px 24px;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    transition: all 0.2s ease;
+    overflow: hidden;
+  }
+  .rule-card:hover {
+    background: var(--bg-hover);
+    border-color: var(--border-strong);
+  }
+  .rule-card::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    border-radius: 3px 0 0 3px;
+  }
+  .rule-card.pflicht::before { background: var(--red); }
+  .rule-card.empfohlen::before { background: var(--green); }
+  .rule-card.optional::before { background: var(--gold); }
+  .rule-card.aus::before { background: var(--text-muted); }
+
+  .rule-icon {
+    font-size: 22px;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    border-radius: 8px;
+    background: rgba(255,255,255,0.03);
+  }
+  .rule-body { flex: 1; min-width: 0; }
+  .rule-head {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 4px;
+    flex-wrap: wrap;
+  }
+  .rule-name {
+    font-weight: 700;
+    font-size: 15px;
+    color: var(--text);
+  }
+  .rule-tag {
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 2px 8px;
+    border-radius: 4px;
+  }
+  .rule-tag.pflicht { background: var(--red-bg); color: var(--red-soft); border: 1px solid var(--red-border); }
+  .rule-tag.empfohlen { background: var(--green-bg); color: var(--green-soft); border: 1px solid var(--green-border); }
+  .rule-tag.optional { background: var(--gold-bg); color: var(--gold-soft); border: 1px solid var(--gold-border); }
+  .rule-tag.aus { background: rgba(75,84,104,0.15); color: var(--text-muted); border: 1px solid rgba(75,84,104,0.2); }
+
+  .rule-desc {
+    font-size: 13.5px;
+    color: var(--text-dim);
+    line-height: 1.55;
+  }
+
+  .rule-divider {
+    height: 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 4px 0;
+    padding: 0 8px;
+  }
+  .rule-divider span {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    white-space: nowrap;
+  }
+  .rule-divider::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  /* ══════════════════ TABLES ══════════════════ */
+  .table-container {
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    overflow: hidden;
+    margin-bottom: 8px;
+    background: var(--bg-card);
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13.5px;
+  }
+  thead th {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    padding: 14px 20px;
+    text-align: left;
+    background: var(--bg-elevated);
+    border-bottom: 1px solid var(--border);
+  }
+  td {
+    padding: 14px 20px;
+    color: var(--text-dim);
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+  }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: rgba(255,255,255,0.015); }
+  td:first-child {
+    color: var(--text);
+    font-weight: 600;
+    white-space: nowrap;
+  }
+
+  /* Gym type badges */
+  .badge {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 3px 10px;
+    border-radius: 5px;
+  }
+  .badge-flug { background: rgba(56,189,248,0.1); color: #38bdf8; border: 1px solid rgba(56,189,248,0.2); }
+  .badge-kaefer { background: rgba(132,204,22,0.1); color: #84cc16; border: 1px solid rgba(132,204,22,0.2); }
+  .badge-normal { background: rgba(163,163,163,0.1); color: #a3a3a3; border: 1px solid rgba(163,163,163,0.2); }
+  .badge-geist { background: rgba(168,85,247,0.1); color: #a855f7; border: 1px solid rgba(168,85,247,0.2); }
+  .badge-kampf { background: rgba(239,68,68,0.1); color: #ef4444; border: 1px solid rgba(239,68,68,0.2); }
+  .badge-stahl { background: rgba(148,163,184,0.1); color: #94a3b8; border: 1px solid rgba(148,163,184,0.2); }
+  .badge-eis { background: rgba(34,211,238,0.1); color: #22d3ee; border: 1px solid rgba(34,211,238,0.2); }
+  .badge-drache { background: rgba(99,102,241,0.1); color: #6366f1; border: 1px solid rgba(99,102,241,0.2); }
+  .badge-mix { background: rgba(245,158,11,0.1); color: #f59e0b; border: 1px solid rgba(245,158,11,0.2); }
+
+  /* Gym number */
+  .gym-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 20px;
+    color: var(--text-ghost);
+    letter-spacing: 1px;
+  }
+  .gym-num.champ {
+    color: var(--gold);
+    font-size: 18px;
+  }
+
+  /* ══════════════════ QUICK REF ══════════════════ */
+  .qr-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+  }
+  @media (max-width: 640px) { .qr-grid { grid-template-columns: 1fr; } }
+
+  .qr-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 18px 20px;
+    transition: all 0.2s ease;
+    position: relative;
+    overflow: hidden;
+  }
+  .qr-card:hover {
+    background: var(--bg-hover);
+    border-color: var(--border-strong);
+  }
+  .qr-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 20px;
+    right: 20px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(37,99,235,0.3), transparent);
+    opacity: 0;
+    transition: opacity 0.2s;
+  }
+  .qr-card:hover::before { opacity: 1; }
+
+  .qr-q {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 6px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .qr-q .qr-emoji { font-size: 15px; }
+  .qr-a {
+    font-size: 12.5px;
+    color: var(--text-dim);
+    line-height: 1.5;
+    padding-left: 23px;
+  }
+
+  /* ══════════════════ HGSS CARDS ══════════════════ */
+  .hgss-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 16px 20px;
+    margin-bottom: 6px;
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    transition: all 0.2s ease;
+  }
+  .hgss-card:hover {
+    background: var(--bg-hover);
+    border-color: var(--border-strong);
+  }
+  .hgss-icon {
+    font-size: 20px;
+    width: 32px;
+    text-align: center;
+    flex-shrink: 0;
+    padding-top: 1px;
+  }
+  .hgss-body { flex: 1; }
+  .hgss-title {
+    font-weight: 700;
+    font-size: 14px;
+    color: var(--text);
+    margin-bottom: 2px;
+  }
+  .hgss-desc {
+    font-size: 13px;
+    color: var(--text-dim);
+    line-height: 1.5;
+  }
+
+  /* ══════════════════ FOOTER ══════════════════ */
+  .footer {
+    text-align: center;
+    padding: 48px 24px 32px;
+    position: relative;
+  }
+  .footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--border-strong), transparent);
+  }
+  .footer p {
+    font-size: 11px;
+    color: var(--text-muted);
+    letter-spacing: 1px;
+  }
+  .footer .skull {
+    font-size: 24px;
+    display: block;
+    margin-bottom: 8px;
+    opacity: 0.3;
+  }
+
+  /* ══════════════════ RESPONSIVE ══════════════════ */
+  @media (max-width: 600px) {
+    .hero { padding: 56px 20px 40px; }
+    .container { padding: 0 16px 80px; }
+    .nav a { padding: 14px 10px; font-size: 10px; letter-spacing: 1px; }
+    .rule-card { padding: 16px; gap: 12px; }
+    .rule-icon { width: 30px; height: 30px; font-size: 18px; }
+    td { padding: 12px 14px; font-size: 13px; }
+    th { padding: 12px 14px; }
+  }
+
+  /* scrollbar */
+  ::-webkit-scrollbar { width: 5px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: var(--text-ghost); border-radius: 5px; }
+  ::-webkit-scrollbar-thumb:hover { background: var(--text-muted); }
+</style>
+</head>
+<body>
+
+<!-- ═══════ HERO ═══════ -->
+<div class="hero">
+  <div class="hero-label">Pokémon SoulSilver · Randomized Nuzlocke</div>
+  <h1>SOUL LINK</h1>
+  <p class="hero-sub">Regelwerk<span></span>Quick Reference<span></span>Nachschlagewerk</p>
+</div>
+
+<!-- ═══════ NAV ═══════ -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="#regeln"><span class="nav-icon">⚔️</span> Regeln</a>
+    <a href="#encounters"><span class="nav-icon">🌿</span> Encounters</a>
+    <a href="#hgss"><span class="nav-icon">⚡</span> Spezial</a>
+    <a href="#gyms"><span class="nav-icon">🏟️</span> Gyms</a>
+    <a href="#quickref"><span class="nav-icon">💡</span> Quick Ref</a>
+  </div>
+</nav>
+
+<div class="container">
+
+  <!-- ═══════ 1. REGELN ═══════ -->
+  <section class="section" id="regeln">
+    <div class="section-head">
+      <div class="section-icon red">⚔️</div>
+      <div class="section-meta">
+        <div class="section-title">REGELN</div>
+        <div class="section-subtitle">Basis-Regeln und optionale Erweiterungen</div>
+      </div>
+    </div>
+
+    <div class="rule-divider"><span>Pflicht</span></div>
+
+    <div class="rule-card pflicht">
+      <div class="rule-icon">🎯</div>
+      <div class="rule-body">
+        <div class="rule-head">
+          <span class="rule-name">Erster Encounter pro Route</span>
+          <span class="rule-tag pflicht">Pflicht</span>
+        </div>
+        <div class="rule-desc">Nur das erste wilde Pokémon pro Route/Area darf gefangen werden. Flieht es oder wird es besiegt → Route verbraucht, kein zweiter Versuch.</div>
+      </div>
+    </div>
+
+    <div class="rule-card pflicht">
+      <div class="rule-icon">🔗</div>
+      <div class="rule-body">
+        <div class="rule-head">
+          <span class="rule-name">Verlinkung</span>
+          <span class="rule-tag pflicht">Pflicht</span>
+        </div>
+        <div class="rule-desc">Die Pokémon beider Spieler auf derselben Route werden als Paar verlinkt. Diese Verlinkung ist permanent und kann nicht geändert werden.</div>
+      </div>
+    </div>
+
+    <div class="rule-card pflicht">
+      <div class="rule-icon">💀</div>
+      <div class="rule-body">
+        <div class="rule-head">
+          <span class="rule-name">Gemeinsamer Tod</span>
+          <span class="rule-tag pflicht">Pflicht</span>
+        </div>
+        <div class="rule-desc">Stirbt ein Pokémon, stirbt auch das verlinkte Pokémon des Partners. Beide werden in die Tot-Box verschoben oder released.</div>
+      </div>
+    </div>
+
+    <div class="rule-card pflicht">
+      <div class="rule-icon">⚰️</div>
+      <div class="rule-body">
+        <div class="rule-head">
+          <span class="rule-name">Faint = Tod</span>
+          <span class="rule-tag pflicht">Pflicht</span>
+        </div>
+        <div class="rule-desc">0 HP = permanent tot. Kein Revive, kein Pokémon Center, keine Ausnahmen. Tot ist tot.</div>
+      </div>
+    </div>
+
+    <div class="rule-card pflicht">
+      <div class="rule-icon">✏️</div>
+      <div class="rule-body">
+        <div class="rule-head">
+          <span class="rule-name">Nickname-Pflicht</span>
+          <span class="rule-tag pflicht">Pflicht</span>
+        </div>
+        <div class="rule-desc">Jedes gefangene Pokémon bekommt einen Spitznamen. Sorgt für Übersicht und macht jeden Tod persönlich.</div>
+      </div>
+    </div>
+
+    <div class="rule-card pflicht">
+      <div class="rule-icon">☠️</div>
+      <div class="rule-body">
+        <div class="rule-head">
+          <span class="rule-name">Wipe = Game Over</span>
+          <span class="rule-tag pflicht">Pflicht</span>
+        </div>
+        <div class="rule-desc">Hat ein Spieler keine lebenden Pokémon mehr, ist der gesamte Run für beide Spieler vorbei.</div>
+      </div>
+    </div>
+
+    <div class="rule-card pflicht">
+      <div class="rule-icon">📦</div>
+      <div class="rule-body">
+        <div class="rule-head">
+          <span class="rule-name">Box-Paare</span>
+          <span class="rule-tag pflicht">Pflicht</span>
+        </div>
+        <div class="rule-desc">Verlinkte Pokémon gehen immer zusammen ins Team oder zusammen in die Box. Kein einseitiges Tauschen.</div>
+      </div>
+    </div>
+
+    <div class="rule-divider"><span>Empfohlen</span></div>
+
+    <div class="rule-card empfohlen">
+      <div class="rule-icon">🔄</div>
+      <div class="rule-body">
+        <div class="rule-head">
+          <span class="rule-name">Duplikatklausel</span>
+          <span class="rule-tag empfohlen">Empfohlen</span>
+        </div>
+        <div class="rule-desc">Ein Pokémon das du schon besitzt oder besessen hast zählt nicht. Nächster Encounter gilt stattdessen. Max. 3 Versuche, danach Route tot.</div>
+      </div>
+    </div>
+
+    <div class="rule-card empfohlen">
+      <div class="rule-icon">✨</div>
+      <div class="rule-body">
+        <div class="rule-head">
+          <span class="rule-name">Shiny Clause</span>
+          <span class="rule-tag empfohlen">Empfohlen</span>
+        </div>
+        <div class="rule-desc">Shiny Pokémon dürfen immer gefangen werden, egal ob erster Encounter oder nicht. Wird separat verlinkt.</div>
+      </div>
+    </div>
+
+    <div class="rule-card empfohlen">
+      <div class="rule-icon">🎁</div>
+      <div class="rule-body">
+        <div class="rule-head">
+          <span class="rule-name">Gift Pokémon verlinken</span>
+          <span class="rule-tag empfohlen">Empfohlen</span>
+        </div>
+        <div class="rule-desc">Geschenk-Pokémon (Togepi-Ei, Eevee, Dratini) sind eigene Encounters und werden als Paar verlinkt.</div>
+      </div>
+    </div>
+
+    <div class="rule-card empfohlen">
+      <div class="rule-icon">🗿</div>
+      <div class="rule-body">
+        <div class="rule-head">
+          <span class="rule-name">Statische Encounters</span>
+          <span class="rule-tag empfohlen">Empfohlen</span>
+        </div>
+        <div class="rule-desc">Feste Pokémon wie das Rote Gyarados werden verlinkt. Bei Randomizer ist es ein zufälliges Pokémon.</div>
+      </div>
+    </div>
+
+    <div class="rule-card empfohlen">
+      <div class="rule-icon">🎣</div>
+      <div class="rule-body">
+        <div class="rule-head">
+          <span class="rule-name">Separate Encounter-Methoden</span>
+          <span class="rule-tag empfohlen">Empfohlen</span>
+        </div>
+        <div class="rule-desc">Gras, Angeln und Headbutt-Bäume zählen als separate Encounters pro Route. Gibt euch mehr Pokémon zum Arbeiten.</div>
+      </div>
+    </div>
+
+    <div class="rule-card empfohlen">
+      <div class="rule-icon">🗺️</div>
+      <div class="rule-body">
+        <div class="rule-head">
+          <span class="rule-name">Kanto optional</span>
+          <span class="rule-tag empfohlen">Empfohlen</span>
+        </div>
+        <div class="rule-desc">Johto ist Pflicht, Kanto-Postgame ist Bonus. Wipe in Kanto = kein Game Over.</div>
+      </div>
+    </div>
+
+    <div class="rule-divider"><span>Optional / Aus</span></div>
+
+    <div class="rule-card optional">
+      <div class="rule-icon">📊</div>
+      <div class="rule-body">
+        <div class="rule-head">
+          <span class="rule-name">Level Cap</span>
+          <span class="rule-tag optional">Optional</span>
+        </div>
+        <div class="rule-desc">Kein Pokémon darf über dem Level des nächsten Gym-Leiters trainiert werden. Deutlich schwerer – beim ersten Run weglassen.</div>
+      </div>
+    </div>
+
+    <div class="rule-card optional">
+      <div class="rule-icon">⚔️</div>
+      <div class="rule-body">
+        <div class="rule-head">
+          <span class="rule-name">Set Mode</span>
+          <span class="rule-tag optional">Optional</span>
+        </div>
+        <div class="rule-desc">Kampfstil auf "Set" statt "Switch" → kein freier Wechsel nach einem KO des Gegners. Hardcore.</div>
+      </div>
+    </div>
+
+    <div class="rule-card empfohlen">
+      <div class="rule-icon">⭐</div>
+      <div class="rule-body">
+        <div class="rule-head">
+          <span class="rule-name">Legendäre fangen</span>
+          <span class="rule-tag empfohlen">Aktiv</span>
+        </div>
+        <div class="rule-desc">Legendäre (Lugia, Raikou, Entei, Suicune, Ho-Oh) werden gefangen und als statische Encounters verlinkt. Bei Randomizer sind es zufällige Pokémon.</div>
+      </div>
+    </div>
+
+    <div class="rule-card aus">
+      <div class="rule-icon">🚫</div>
+      <div class="rule-body">
+        <div class="rule-head">
+          <span class="rule-name">Healing-Limit</span>
+          <span class="rule-tag aus">Aus</span>
+        </div>
+        <div class="rule-desc">Kein Limit für Heilitems im Kampf. Bei randomisierten Teams braucht ihr jeden Vorteil.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════ 2. ENCOUNTERS ═══════ -->
+  <section class="section" id="encounters">
+    <div class="section-head">
+      <div class="section-icon green">🌿</div>
+      <div class="section-meta">
+        <div class="section-title">ENCOUNTER-TYPEN</div>
+        <div class="section-subtitle">Was zählt als Encounter und wie</div>
+      </div>
+    </div>
+
+    <div class="table-container">
+      <table>
+        <thead>
+          <tr><th>Typ</th><th>Zählt als</th><th>Beispiel</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>🌿 Hohes Gras</td><td>1 Encounter pro Route</td><td>Route 29 Gras</td></tr>
+          <tr><td>🕳️ Höhle</td><td>1 pro Ebene / Stock</td><td>Verbindungstunnel, Eispfad</td></tr>
+          <tr><td>🌊 Surfen</td><td>Separater Encounter</td><td>Route 40 Wasser</td></tr>
+          <tr><td>🎣 Angeln</td><td>Separater Encounter</td><td>Route 32 mit Angel</td></tr>
+          <tr><td>🌳 Headbutt</td><td>Separater Encounter</td><td>Route 29 Headbutt-Baum</td></tr>
+          <tr><td>🎁 Gift Pokémon</td><td>Eigener Encounter → verlinken</td><td>Togepi-Ei, Eevee, Dratini</td></tr>
+          <tr><td>🗿 Statisch</td><td>Eigener Encounter → verlinken</td><td>Rotes Gyarados (randomized)</td></tr>
+          <tr><td>🦗 Bug Contest</td><td>Eigener Encounter</td><td>Nationalpark Di/Do/Sa</td></tr>
+          <tr><td>🏜️ Safari Zone</td><td>1 pro Area</td><td>Jede Zone separat</td></tr>
+          <tr><td style="color: var(--text-muted)">🚫 Trainer-Trades</td><td style="color: var(--text-muted)">Zählt nicht</td><td style="color: var(--text-muted)">—</td></tr>
+          <tr><td style="color: var(--text-muted)">🚫 Game Corner</td><td style="color: var(--text-muted)">Zählt nicht</td><td style="color: var(--text-muted)">—</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ═══════ 3. HGSS SPEZIAL ═══════ -->
+  <section class="section" id="hgss">
+    <div class="section-head">
+      <div class="section-icon gold">⚡</div>
+      <div class="section-meta">
+        <div class="section-title">HGSS-SPEZIALFÄLLE</div>
+        <div class="section-subtitle">SoulSilver-spezifische Regelungen</div>
+      </div>
+    </div>
+
+    <div class="hgss-card">
+      <div class="hgss-icon">🥚</div>
+      <div class="hgss-body">
+        <div class="hgss-title">Togepi-Ei</div>
+        <div class="hgss-desc">Gift-Encounter. Beide Spieler erhalten es → verlinken was schlüpft. Bei Randomizer schlüpft etwas Zufälliges.</div>
+      </div>
+    </div>
+
+    <div class="hgss-card">
+      <div class="hgss-icon">🦊</div>
+      <div class="hgss-body">
+        <div class="hgss-title">Eevee von Bill</div>
+        <div class="hgss-desc">Gift-Encounter in Goldenrod City. Wird als Paar verlinkt.</div>
+      </div>
+    </div>
+
+    <div class="hgss-card">
+      <div class="hgss-icon">🐉</div>
+      <div class="hgss-body">
+        <div class="hgss-title">Extremspeed-Dratini</div>
+        <div class="hgss-desc">Gift-Encounter in der Drachenhöhle nach dem Quiz. Wird verlinkt.</div>
+      </div>
+    </div>
+
+    <div class="hgss-card">
+      <div class="hgss-icon">🔴</div>
+      <div class="hgss-body">
+        <div class="hgss-title">Rotes Gyarados</div>
+        <div class="hgss-desc">Statischer Encounter am See des Zorns. Beide fangen → verlinken. Bei Randomizer ist es ein zufälliges Pokémon.</div>
+      </div>
+    </div>
+
+    <div class="hgss-card">
+      <div class="hgss-icon">⭐</div>
+      <div class="hgss-body">
+        <div class="hgss-title">Legendäre Pokémon</div>
+        <div class="hgss-desc">Lugia, Ho-Oh, Raikou, Entei, Suicune → werden gefangen und als statische Encounters verlinkt. Raubkatzen sind Roaming-Encounters — zählen beim ersten Fang, nicht pro Route.</div>
+      </div>
+    </div>
+
+    <div class="hgss-card">
+      <div class="hgss-icon">🏃</div>
+      <div class="hgss-body">
+        <div class="hgss-title">Pokémon flieht</div>
+        <div class="hgss-desc">Route ist sofort verbraucht. Kein zweiter Versuch, kein Umsehen.</div>
+      </div>
+    </div>
+
+    <div class="hgss-card">
+      <div class="hgss-icon">💥</div>
+      <div class="hgss-body">
+        <div class="hgss-title">Pokémon aus Versehen besiegt</div>
+        <div class="hgss-desc">Route ist verbraucht. Aufpassen mit Crit-Hits.</div>
+      </div>
+    </div>
+
+    <div class="hgss-card">
+      <div class="hgss-icon">🔁</div>
+      <div class="hgss-body">
+        <div class="hgss-title">Duplikat-Encounter</div>
+        <div class="hgss-desc">Nächstes Pokémon auf der Route zählt stattdessen. Maximal 3 Versuche, dann ist die Route tot.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════ 4. GYMS ═══════ -->
+  <section class="section" id="gyms">
+    <div class="section-head">
+      <div class="section-icon purple">🏟️</div>
+      <div class="section-meta">
+        <div class="section-title">GYM-REIHENFOLGE</div>
+        <div class="section-subtitle">Johto-Liga Progression & Level-Ranges</div>
+      </div>
+    </div>
+
+    <div class="table-container">
+      <table>
+        <thead>
+          <tr><th style="width:50px">#</th><th>Leader</th><th>Stadt</th><th>Typ</th><th style="text-align:right">Level</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="gym-num">01</span></td>
+            <td>Falk</td>
+            <td>Violet City</td>
+            <td><span class="badge badge-flug">Flug</span></td>
+            <td style="text-align:right; font-variant-numeric: tabular-nums;">9 – 13</td>
+          </tr>
+          <tr>
+            <td><span class="gym-num">02</span></td>
+            <td>Bianka</td>
+            <td>Azalea Town</td>
+            <td><span class="badge badge-kaefer">Käfer</span></td>
+            <td style="text-align:right; font-variant-numeric: tabular-nums;">14 – 16</td>
+          </tr>
+          <tr>
+            <td><span class="gym-num">03</span></td>
+            <td>Whitney</td>
+            <td>Goldenrod City</td>
+            <td><span class="badge badge-normal">Normal</span></td>
+            <td style="text-align:right; font-variant-numeric: tabular-nums;">17 – 19</td>
+          </tr>
+          <tr>
+            <td><span class="gym-num">04</span></td>
+            <td>Jens</td>
+            <td>Ecruteak City</td>
+            <td><span class="badge badge-geist">Geist</span></td>
+            <td style="text-align:right; font-variant-numeric: tabular-nums;">21 – 25</td>
+          </tr>
+          <tr>
+            <td><span class="gym-num">05</span></td>
+            <td>Chuck</td>
+            <td>Cianwood City</td>
+            <td><span class="badge badge-kampf">Kampf</span></td>
+            <td style="text-align:right; font-variant-numeric: tabular-nums;">27 – 31</td>
+          </tr>
+          <tr>
+            <td><span class="gym-num">06</span></td>
+            <td>Jasmin</td>
+            <td>Olivine City</td>
+            <td><span class="badge badge-stahl">Stahl</span></td>
+            <td style="text-align:right; font-variant-numeric: tabular-nums;">30 – 35</td>
+          </tr>
+          <tr>
+            <td><span class="gym-num">07</span></td>
+            <td>Sandra</td>
+            <td>Mahogany Town</td>
+            <td><span class="badge badge-eis">Eis</span></td>
+            <td style="text-align:right; font-variant-numeric: tabular-nums;">30 – 34</td>
+          </tr>
+          <tr>
+            <td><span class="gym-num">08</span></td>
+            <td>Clair</td>
+            <td>Blackthorn City</td>
+            <td><span class="badge badge-drache">Drache</span></td>
+            <td style="text-align:right; font-variant-numeric: tabular-nums;">37 – 41</td>
+          </tr>
+          <tr style="border-top: 1px solid var(--border-strong);">
+            <td><span class="gym-num champ">★</span></td>
+            <td style="color: var(--gold-soft); font-weight: 700;">Top 4 + Champion</td>
+            <td>Indigo Plateau</td>
+            <td><span class="badge badge-mix">Gemischt</span></td>
+            <td style="text-align:right; font-variant-numeric: tabular-nums; color: var(--gold-soft); font-weight: 600;">40 – 50</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ═══════ 5. QUICK REF ═══════ -->
+  <section class="section" id="quickref">
+    <div class="section-head">
+      <div class="section-icon blue">💡</div>
+      <div class="section-meta">
+        <div class="section-title">QUICK REFERENCE</div>
+        <div class="section-subtitle">Was tun wenn …</div>
+      </div>
+    </div>
+
+    <div class="qr-grid">
+      <div class="qr-card">
+        <div class="qr-q"><span class="qr-emoji">🔄</span> Encounter ist Duplikat?</div>
+        <div class="qr-a">Nächstes Pokémon zählt. Max. 3 Versuche, danach Route tot.</div>
+      </div>
+      <div class="qr-card">
+        <div class="qr-q"><span class="qr-emoji">🏃</span> Pokémon flieht?</div>
+        <div class="qr-a">Route ist verbraucht. Kein zweiter Versuch.</div>
+      </div>
+      <div class="qr-card">
+        <div class="qr-q"><span class="qr-emoji">💥</span> Versehentlich besiegt?</div>
+        <div class="qr-a">Route ist verbraucht. Pech gehabt.</div>
+      </div>
+      <div class="qr-card">
+        <div class="qr-q"><span class="qr-emoji">💀</span> Pokémon stirbt?</div>
+        <div class="qr-a">Sofort Partner sagen → verlinktes Pokémon auch in Tot-Box → Tracker updaten.</div>
+      </div>
+      <div class="qr-card">
+        <div class="qr-q"><span class="qr-emoji">☠️</span> Komplett-Wipe?</div>
+        <div class="qr-a">Game Over für beide Spieler. Der gesamte Run ist vorbei.</div>
+      </div>
+      <div class="qr-card">
+        <div class="qr-q"><span class="qr-emoji">✨</span> Shiny gefunden?</div>
+        <div class="qr-a">Immer fangen! Zählt nicht als Route-Encounter. Wird separat verlinkt.</div>
+      </div>
+      <div class="qr-card">
+        <div class="qr-q"><span class="qr-emoji">🎁</span> Gift Pokémon?</div>
+        <div class="qr-a">Beide erhalten es → verlinken → Tracker eintragen.</div>
+      </div>
+      <div class="qr-card">
+        <div class="qr-q"><span class="qr-emoji">❓</span> Route schon besucht?</div>
+        <div class="qr-a">Tracker checken. Im Zweifel Partner fragen.</div>
+      </div>
+      <div class="qr-card">
+        <div class="qr-q"><span class="qr-emoji">🔀</span> Unterschiedlich weit?</div>
+        <div class="qr-a">Kein Problem. Encounters werden nach Route verlinkt, nicht nach Zeit.</div>
+      </div>
+      <div class="qr-card">
+        <div class="qr-q"><span class="qr-emoji">💾</span> Savegame sichern?</div>
+        <div class="qr-a">.sav-Datei nach jeder Session kopieren. Liegt im selben Ordner wie die ROM.</div>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<!-- ═══════ FOOTER ═══════ -->
+<div class="footer">
+  <span class="skull">☠️</span>
+  <p>SOUL LINK — SOULSILVER RANDOMIZED — MÖGEN EURE POKÉMON ÜBERLEBEN</p>
+</div>
+
+</body>
+</html>
