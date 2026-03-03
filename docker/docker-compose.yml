@@ -1,0 +1,14 @@
+version: '3.8'
+
+services:
+  soullink:
+    build: .
+    container_name: soullink-tracker
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./data:/app/data
+    environment:
+      - PORT=3000
+      - DATA_DIR=/app/data
+    restart: unless-stopped
