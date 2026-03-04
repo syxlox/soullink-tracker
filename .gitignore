@@ -5,3 +5,4 @@ history.json
 data/
 *.log
 docker.push
+.claude/
