@@ -1,6 +1,6 @@
 # Soul Link Tracker
 
-A real-time Pokemon SoulSilver Soul Link Nuzlocke tracker for two players over LAN. Built for randomized runs with German localization.
+A (vibecoded) real-time Pokemon SoulSilver Soul Link Nuzlocke tracker for two players over LAN. Built for randomized runs with German localization.
 
 ## Features
 
